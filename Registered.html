@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>註冊頁面</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        //getElementById(抓取頁面上的元素)
+        function getElement(name) {
+            return document.getElementById(name);
+        }
+
+        //判斷是否可以送件
+        function Check() {
+            //抓取頁面上的checkboc1，取得是否checked
+            var isChecked = getElement('MustCheck').checked;
+            //如果是，就return true
+            if (isChecked) {
+                $('#myModal2').modal();
+                return true;
+            }
+            //否則就... 
+            else {
+                $('#myModal').modal();
+                // alert('必須勾選同意!');
+                return false;
+            }
+        }
+
+        //當網頁載入完成後執行
+        window.onload = function () {
+            //hook event(在form1被submit(送出)時...)
+            getElement('form1').onsubmit = function () {
+                //呼叫 Button_Submit()
+                return Check();
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <form id="form1" method="POST">
+        <div class="container">
+            <div class="row">
+                <!-- 置中 3-6-3 -->
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            用戶註冊
+                        </div>
+
+                        <div class="card-body">
+                            <label>帳號:</label>
+                            <input type="text" class="form-control" placeholder="請輸入帳號" id="NameField" name="NameField">
+                            <br />
+                            <label>密碼:</label>
+                            <input type="password" class="form-control" placeholder="請輸入密碼" id="PwdField"
+                                name="PwdField">
+                            <label>確認密碼:</label>
+                            <input type="password" class="form-control" placeholder="請輸入密碼" id="PwdField"
+                                name="PwdField">
+                            <label>e-mail:</label>
+                            <input type="text" class="form-control" placeholder="請輸入e-mail" id="NameField"
+                                name="NameField">
+                            <label>生日:</label>
+                            <input type="text" class="form-control" placeholder="ex.2019.10.07" id="NameField"
+                                name="NameField">
+                            <label>學校/公司:</label>
+                            <input type="text" class="form-control" id="NameField" name="NameField">
+                            <br />
+
+                            <input type="checkbox" class="form-check-label" id="MustCheck" name="MustCheck">
+                            同意本系統使用條款...
+                            <br />
+                            <input type="button" class="btn btn-success form-control" value="註冊" onclick="Check()">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+        </div>
+    </form>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">請勾選同意</h4>
+                    <button type="submit" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    請勾選同意
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="myModal2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">恭喜註冊成功</h4>
+                    <button type="submit" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    恭喜註冊成功
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
